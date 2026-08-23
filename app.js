@@ -274,6 +274,10 @@ function renderItem(item) {
   count.className = "days-count";
   count.textContent = `· ${dayLabel}`;
   title.append(count);
+  const mobileEndDate = document.createElement("span");
+  mobileEndDate.className = "end-date-mobile";
+  mobileEndDate.textContent = ` · ${formatCompactDate(end)}`;
+  title.append(mobileEndDate);
   card.querySelector(".edit-button").addEventListener("click", () => beginEdit(item));
   card.querySelector(".delete-button").addEventListener("click", () => deleteItem(item));
 
@@ -329,4 +333,9 @@ function addDays(date, amount) {
 
 function formatDate(date) {
   return date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+}
+
+function formatCompactDate(date) {
+  const months = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
+  return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, "0")}`;
 }

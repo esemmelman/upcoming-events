@@ -83,6 +83,7 @@ button, input { font: inherit; }
 .card-header { display: flex; justify-content: space-between; gap: 18px; align-items: start; }
 .card-title { margin: 0; font-family: Georgia, serif; font-size: 19px; line-height: 1.15; font-weight: 500; }
 .days-count { color: var(--muted); font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.end-date-mobile { display: none; color: var(--muted); font-family: "Segoe UI", system-ui, sans-serif; font-size: 12px; font-weight: 600; white-space: nowrap; }
 .card-actions { display: flex; gap: 6px; }
 .icon-button { padding: 6px 9px; border: 1px solid var(--line); border-radius: 7px; color: #4c5750; background: white; font-size: 12px; cursor: pointer; }
 .icon-button:hover { border-color: #8b958f; }
@@ -141,6 +142,7 @@ button, input { font: inherit; }
   .card-header { flex-direction: row; align-items: center; }
   .card-header > div:first-child { min-width: 0; }
   .card-title { font-size: 17px; }
+  .end-date-mobile { display: inline; }
   .card-actions { flex: 0 0 auto; }
   .icon-button { padding: 5px 7px; font-size: 11px; }
 }
