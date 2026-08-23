@@ -16,6 +16,8 @@ const submitButton = document.querySelector("#submit-button");
 const cancelEditButton = document.querySelector("#cancel-edit");
 const template = document.querySelector("#item-template");
 const connectionStatus = document.querySelector("#connection-status");
+const mobileAddButton = document.querySelector("#mobile-add");
+const mobileCloseButton = document.querySelector("#mobile-close");
 
 let items = [];
 let editingId = null;
@@ -26,7 +28,18 @@ endInput.min = startInput.value;
 document.querySelector("#today-label").textContent = `Today · ${formatDate(today)}`;
 
 form.addEventListener("submit", saveItem);
-cancelEditButton.addEventListener("click", resetForm);
+cancelEditButton.addEventListener("click", () => {
+  resetForm();
+  closeMobileForm();
+});
+mobileAddButton.addEventListener("click", () => {
+  resetForm();
+  openMobileForm();
+});
+mobileCloseButton.addEventListener("click", closeMobileForm);
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeMobileForm();
+});
 startInput.addEventListener("change", () => {
   endInput.min = startInput.value;
   if (endInput.value && endInput.value < startInput.value) endInput.value = startInput.value;
@@ -139,6 +152,7 @@ async function saveItem(event) {
       await request("", { method: "POST", body: JSON.stringify(row), prefer: "return=minimal" });
     }
     resetForm();
+    closeMobileForm();
     await refreshItems();
     setConnectionStatus("Synced");
   } catch (error) {
@@ -172,7 +186,19 @@ function beginEdit(item) {
   submitButton.textContent = "Save changes";
   cancelEditButton.hidden = false;
   nameInput.focus();
+  openMobileForm();
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openMobileForm() {
+  if (window.matchMedia("(max-width: 760px)").matches) {
+    document.body.classList.add("form-open");
+    window.setTimeout(() => nameInput.focus(), 0);
+  }
+}
+
+function closeMobileForm() {
+  document.body.classList.remove("form-open");
 }
 
 async function deleteItem(item) {

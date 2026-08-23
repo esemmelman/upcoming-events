@@ -1,6 +1,6 @@
 # Timeline
 
-A small browser app for tracking items and their end-date timelines. Version 1.0.0 uses the `upcoming_events_items_v1` table in the `bnaimitzvah` Supabase project.
+A small browser app for tracking items and their end-date timelines. Version 1.1.0 uses the `upcoming_events_items_v1` table in the `bnaimitzvah` Supabase project.
 
 Hosted app: https://esemmelman.github.io/upcoming-events/
 
