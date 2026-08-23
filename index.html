@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Events</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow">Personal planner</p>
+          <h1>Upcoming Events</h1>
+        </div>
+      </div>
+
+      <form id="item-form" class="item-form">
+        <div class="form-heading">
+          <h2 id="form-title">Add an item</h2>
+          <button id="cancel-edit" class="text-button" type="button" hidden>Cancel</button>
+        </div>
+
+        <label for="item-name">Name</label>
+        <input id="item-name" name="name" type="text" placeholder="e.g. Launch website" required maxlength="100">
+
+        <label for="start-date">Start date</label>
+        <input id="start-date" name="startDate" type="date" required>
+
+        <label for="end-date">End date</label>
+        <input id="end-date" name="endDate" type="date" required>
+
+        <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+        <button id="submit-button" class="primary-button" type="submit">Add item</button>
+      </form>
+
+      <div class="legend" aria-label="Timeline color key">
+        <h2>Color key</h2>
+        <p><span class="legend-dot green"></span> More than 10 days left</p>
+        <p><span class="legend-dot yellow"></span> 3–10 days left</p>
+        <p><span class="legend-dot red"></span> Final 2 days</p>
+      </div>
+      <div class="app-meta">
+        <span id="connection-status">Connecting…</span>
+        <span>v1.0.0</span>
+      </div>
+    </aside>
+
+    <section class="content">
+      <header class="content-header">
+        <div>
+          <p class="eyebrow">Your schedule</p>
+          <h2>Upcoming Events</h2>
+        </div>
+        <p id="today-label" class="today-label"></p>
+      </header>
+
+      <div id="items" class="items" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <template id="item-template">
+    <article class="timeline-card">
+      <header class="card-header">
+        <div>
+          <h3 class="card-title"></h3>
+        </div>
+        <div class="card-actions">
+          <button class="icon-button edit-button" type="button">Edit</button>
+          <button class="icon-button danger delete-button" type="button">Delete</button>
+        </div>
+      </header>
+      <div class="timeline-wrap">
+        <div class="timeline" role="list"></div>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
