@@ -150,8 +150,8 @@ button, input { font: inherit; }
     display: block;
     position: fixed;
     z-index: 30;
-    left: 50%;
-    bottom: 24px;
+    left: 0;
+    top: 0;
     padding: 8px 14px;
     border-radius: 7px;
     color: white;
@@ -161,8 +161,18 @@ button, input { font: inherit; }
     font-weight: 700;
     opacity: 0;
     pointer-events: none;
-    transform: translate(-50%, 8px);
-    transition: opacity .15s ease, transform .15s ease;
+    transform: translate(-50%, -100%);
+    transition: opacity .15s ease;
   }
-  .weekday-toast.visible { opacity: 1; transform: translate(-50%, 0); }
+  .weekday-toast::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 10px;
+    height: 10px;
+    background: #17201b;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .weekday-toast.visible { opacity: 1; }
 }

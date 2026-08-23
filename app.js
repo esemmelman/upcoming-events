@@ -308,7 +308,7 @@ function renderItem(item) {
     cell.textContent = cursor.getDate();
     const weekday = `${cursor.toLocaleDateString(undefined, { weekday: "short" }).replace(/\.$/, "")}.`;
     cell.title = weekday;
-    cell.addEventListener("click", () => showWeekday(weekday));
+    cell.addEventListener("click", () => showWeekday(weekday, cell));
     timeline.append(cell);
   }
   return card;
@@ -344,10 +344,13 @@ function formatCompactDate(date) {
   return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, "0")}`;
 }
 
-function showWeekday(weekday) {
+function showWeekday(weekday, cell) {
   if (!window.matchMedia("(max-width: 760px)").matches) return;
   window.clearTimeout(weekdayToastTimer);
+  const bounds = cell.getBoundingClientRect();
   weekdayToast.textContent = weekday;
+  weekdayToast.style.left = `${bounds.left + bounds.width / 2}px`;
+  weekdayToast.style.top = `${bounds.top - 7}px`;
   weekdayToast.classList.add("visible");
   weekdayToastTimer = window.setTimeout(() => weekdayToast.classList.remove("visible"), 1400);
 }
