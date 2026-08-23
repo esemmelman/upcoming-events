@@ -118,6 +118,7 @@ button, input { font: inherit; }
     padding: 58px 18px 30px;
     background: rgba(16, 38, 31, .96);
   }
+  body:not(.form-open) .sidebar { display: none !important; }
   body.form-open { overflow: hidden; }
   body.form-open .sidebar { display: block; }
   .sidebar .brand, .sidebar .legend, .sidebar .app-meta { display: none; }

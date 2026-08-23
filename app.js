@@ -22,6 +22,10 @@ const mobileCloseButton = document.querySelector("#mobile-close");
 let items = [];
 let editingId = null;
 
+// Mobile forms always begin closed, including when a browser restores the page.
+closeMobileForm();
+window.addEventListener("pageshow", closeMobileForm);
+
 const today = localToday();
 startInput.value = dateKey(today);
 endInput.min = startInput.value;
