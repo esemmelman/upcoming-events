@@ -100,6 +100,7 @@ button, input { font: inherit; }
 .past-message { margin: 18px 0 0; padding: 14px; border-radius: 9px; color: #8a3531; background: #f8e5e2; font-size: 13px; }
 .empty-state { padding: 64px 24px; border: 1px dashed #cbc8bd; border-radius: 16px; text-align: center; color: var(--muted); }
 .empty-state h3 { margin: 0 0 8px; color: var(--ink); font-family: Georgia, serif; font-size: 26px; font-weight: 500; }
+.weekday-toast { display: none; }
 
 @media (max-width: 760px) {
   .app-shell { display: block; }
@@ -145,4 +146,23 @@ button, input { font: inherit; }
   .end-date-mobile { display: inline; }
   .card-actions { flex: 0 0 auto; }
   .icon-button { padding: 5px 7px; font-size: 11px; }
+  .weekday-toast {
+    display: block;
+    position: fixed;
+    z-index: 30;
+    left: 50%;
+    bottom: 24px;
+    padding: 8px 14px;
+    border-radius: 7px;
+    color: white;
+    background: #17201b;
+    box-shadow: 0 5px 18px rgba(0,0,0,.22);
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 8px);
+    transition: opacity .15s ease, transform .15s ease;
+  }
+  .weekday-toast.visible { opacity: 1; transform: translate(-50%, 0); }
 }

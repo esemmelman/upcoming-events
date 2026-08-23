@@ -18,9 +18,11 @@ const template = document.querySelector("#item-template");
 const connectionStatus = document.querySelector("#connection-status");
 const mobileAddButton = document.querySelector("#mobile-add");
 const mobileCloseButton = document.querySelector("#mobile-close");
+const weekdayToast = document.querySelector("#weekday-toast");
 
 let items = [];
 let editingId = null;
+let weekdayToastTimer = null;
 
 // Mobile forms always begin closed, including when a browser restores the page.
 closeMobileForm();
@@ -304,7 +306,9 @@ function renderItem(item) {
     cell.className = `date-cell ${daysLeft < 2 ? "red" : daysLeft <= 10 ? "yellow" : "green"}`;
     cell.setAttribute("role", "listitem");
     cell.textContent = cursor.getDate();
-    cell.title = cursor.toLocaleDateString(undefined, { weekday: "short" });
+    const weekday = `${cursor.toLocaleDateString(undefined, { weekday: "short" }).replace(/\.$/, "")}.`;
+    cell.title = weekday;
+    cell.addEventListener("click", () => showWeekday(weekday));
     timeline.append(cell);
   }
   return card;
@@ -338,4 +342,12 @@ function formatDate(date) {
 function formatCompactDate(date) {
   const months = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
   return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function showWeekday(weekday) {
+  if (!window.matchMedia("(max-width: 760px)").matches) return;
+  window.clearTimeout(weekdayToastTimer);
+  weekdayToast.textContent = weekday;
+  weekdayToast.classList.add("visible");
+  weekdayToastTimer = window.setTimeout(() => weekdayToast.classList.remove("visible"), 1400);
 }
